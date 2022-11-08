@@ -1,17 +1,17 @@
-<form (ngSubmit)="addHero()" #hero="ngForm">
+<form [formGroup]="form" (ngSubmit)="onSubmit()">
   <div class="mb-3">
     <label for="name" class="form-label">Nome</label>
     <input
       type="text"
+      formControlName="name"
       ngModel
       name="nome"
-      #name="ngModel"
       class="form-control"
       id="name"
       required
     />
     <div
-      *ngIf="name.invalid && name.touched"
+      *ngIf="this.form.get('name')?.invalid && this.form.get('name')?.touched"
       class="alert alert-danger"
       role="alert"
     >
@@ -19,90 +19,68 @@
     </div>
   </div>
   <div class="mb-3">
-    <label for="alterego" class="form-label">Alter Ego</label>
+    <label for="alterego" formControlName="alterego" class="form-label"
+      >Alter Ego</label
+    >
     <input
       type="text"
       ngModel
-      #alterego="ngModel"
       name="alterego"
       class="form-control"
       id="alterego"
       required
     />
-    <div
-      *ngIf="alterego.invalid && alterego.touched"
-      class="alert alert-danger"
-      role="alert"
-    >
-      Devi compilare questo campo!
-    </div>
   </div>
   <div class="mb-3">
-    <label for="power" class="form-label">Power</label>
-
+    <label for="power" formControlName="power" class="form-label">Power</label>
     <select
       class="form-select form-control"
-      ngModel
       id="power"
-      #power="ngModel"
+      formControlName="power"
       name="power"
     >
       <option *ngFor="let power of powers" [value]="power">{{ power }}</option>
     </select>
   </div>
   <div class="mb-3">
-    <label for="enemy" class="form-label">Enemy</label>
+    <label for="enemy" formControlName="enemy" class="form-label">Enemy</label>
     <input
       type="text"
       ngModel
-      #enemy="ngModel"
       name="enemy"
       class="form-control"
       id="enemy"
       maxlength="10"
+      required
     />
-    <div
-      *ngIf="enemy.invalid && enemy.touched"
-      class="alert alert-danger"
-      role="alert"
-    >
-      Devi compilare questo campo con almeno 10 caratteri!
-    </div>
   </div>
   <div class="mb-3">
-    <label for="planet" class="form-label">Planet</label>
+    <label for="planet" formControlName="planet" class="form-label"
+      >Planet</label
+    >
     <input
       type="text"
       ngModel
-      #planet="ngModel"
       name="planet"
       class="form-control"
       id="planet"
       minlength="5"
       required
     />
-    <div
-      *ngIf="planet.invalid && planet.touched"
-      class="alert alert-danger"
-      role="alert"
-    >
-      Devi compilare questo campo con max 5 caratteri!
-    </div>
   </div>
   <div class="mb-3">
-    <label for="weakness" class="form-label">Weakness</label>
+    <label for="weakness" formControlName="weakness" class="form-label"
+      >Weakness</label
+    >
     <input
       type="text"
       ngModel
-      #weakness="ngModel"
       name="weakness"
       class="form-control"
       id="weakness"
     />
   </div>
   <div class="mb-3">
-    <button type="submit" [disabled]="hero.invalid" class="btn btn-primary">
-      Submit
-    </button>
+    <button type="submit" class="btn btn-primary">Submit</button>
   </div>
 </form>

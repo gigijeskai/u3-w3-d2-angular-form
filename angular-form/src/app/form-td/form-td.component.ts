@@ -11,6 +11,7 @@ import { SuperHero } from '../classes/super-hero';
 export class FormTDComponent implements OnInit {
   myHero: SuperHero = new SuperHero();
   @ViewChild('hero') myForm!: NgForm;
+  powers = ['forte', 'fortissimo', 'mostruoso'];
 
   constructor() {}
 
@@ -23,6 +24,6 @@ export class FormTDComponent implements OnInit {
     this.myHero = this.myForm.value.enemy;
     this.myHero = this.myForm.value.planet;
     this.myHero = this.myForm.value.weakness;
-    console.log(this.myHero);
+    console.log(this.myForm);
   }
 }
